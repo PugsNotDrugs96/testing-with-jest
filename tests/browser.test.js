@@ -32,3 +32,13 @@ describe('Clicking "Pusha till stacken"', () => {
 		await alert.accept();
 	});
 });
+
+test('The top stack should contain "HokusPokus" when pushed to stack', async () => {
+    let push = await driver.findElement(By.id('push'));
+    await push.click();
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys("HokusPoooookus"); //Medvetet fel pushad sträng
+    await alert.accept();
+    let topOfStack = await driver.findElement(By.id('top_of_stack')).getText();
+    expect(topOfStack).toEqual("HokusPokus");
+});
